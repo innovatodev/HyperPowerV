@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+	<settings pass="oobeSystem">
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<InputLocale>040c:0000040c</InputLocale>
+			<SystemLocale>fr-FR</SystemLocale>
+			<UILanguage>fr-FR</UILanguage>
+			<UILanguageFallback>fr-FR</UILanguageFallback>
+			<UserLocale>fr-FR</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<TimeZone>Romance Standard Time</TimeZone>
+			<OOBE>
+				<HideEULAPage>true</HideEULAPage>
+				<HideLocalAccountScreen>true</HideLocalAccountScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+				<NetworkLocation>Home</NetworkLocation>
+				<ProtectYourPC>3</ProtectYourPC>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
+				<SkipUserOOBE>true</SkipUserOOBE>
+			</OOBE>
+			<UserAccounts>
+				<AdministratorPassword>
+					<PlainText>true</PlainText>
+					<Value>P4ssword</Value>
+				</AdministratorPassword>
+			</UserAccounts>
+		</component>
+	</settings>
+	<settings pass="specialize">
+		<component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<RunSynchronous>
+				<RunSynchronousCommand wcm:action="add">
+					<Order>3</Order>
+					<Path>net user Administrateur /fullname:"Administrateur"</Path>
+					<WillReboot>Never</WillReboot>
+				</RunSynchronousCommand>
+				<RunSynchronousCommand wcm:action="add">
+					<Order>1</Order>
+					<Path>net user Administrateur /active:Yes</Path>
+					<WillReboot>Never</WillReboot>
+				</RunSynchronousCommand>
+				<RunSynchronousCommand wcm:action="add">
+					<Order>2</Order>
+					<Path>net user Administrateur /comment:"Administrateur"</Path>
+					<WillReboot>Never</WillReboot>
+				</RunSynchronousCommand>
+			</RunSynchronous>
+		</component>
+		<component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<SkipAutoActivation>true</SkipAutoActivation>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ComputerName>*</ComputerName>
+			<RegisteredOrganization>Organisation</RegisteredOrganization>
+			<RegisteredOwner>Propriétaire</RegisteredOwner>
+		</component>
+		<component name="Microsoft-Windows-UnattendedJoin" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<Identification>
+				<JoinWorkgroup>WORKGROUP</JoinWorkgroup>
+			</Identification>
+		</component>
+	</settings>
+	<settings pass="windowsPE">
+		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<InputLocale>040c:0000040c</InputLocale>
+			<SystemLocale>fr-FR</SystemLocale>
+			<UILanguage>fr-FR</UILanguage>
+			<UILanguageFallback>fr-FR</UILanguageFallback>
+			<UserLocale>fr-FR</UserLocale>
+			<SetupUILanguage>
+				<UILanguage>fr-FR</UILanguage>
+			</SetupUILanguage>
+		</component>
+		<component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<Diagnostics>
+				<OptIn>false</OptIn>
+			</Diagnostics>
+			<DiskConfiguration>
+				<WillShowUI>OnError</WillShowUI>
+				<Disk wcm:action="add">
+					<DiskID>0</DiskID>
+					<WillWipeDisk>true</WillWipeDisk>
+					<CreatePartitions>
+						<CreatePartition wcm:action="add">
+							<Order>1</Order>
+							<Size>260</Size>
+							<Type>EFI</Type>
+						</CreatePartition>
+						<CreatePartition wcm:action="add">
+							<Order>2</Order>
+							<Size>16</Size>
+							<Type>MSR</Type>
+						</CreatePartition>
+						<CreatePartition wcm:action="add">
+							<Order>3</Order>
+							<Size>499</Size>
+							<Type>Primary</Type>
+						</CreatePartition>
+						<CreatePartition wcm:action="add">
+							<Extend>true</Extend>
+							<Order>4</Order>
+							<Type>Primary</Type>
+						</CreatePartition>
+					</CreatePartitions>
+					<ModifyPartitions>
+						<ModifyPartition wcm:action="add">
+							<Format>FAT32</Format>
+							<Order>1</Order>
+							<PartitionID>1</PartitionID>
+						</ModifyPartition>
+						<ModifyPartition wcm:action="add">
+							<Order>2</Order>
+							<PartitionID>2</PartitionID>
+						</ModifyPartition>
+						<ModifyPartition wcm:action="add">
+							<Format>NTFS</Format>
+							<Order>3</Order>
+							<PartitionID>3</PartitionID>
+							<TypeID>de94bba4-06d1-4d40-a16a-bfd50179d6ac</TypeID>
+						</ModifyPartition>
+						<ModifyPartition wcm:action="add">
+							<Format>NTFS</Format>
+							<Order>4</Order>
+							<PartitionID>4</PartitionID>
+						</ModifyPartition>
+					</ModifyPartitions>
+				</Disk>
+			</DiskConfiguration>
+			<DynamicUpdate>
+				<Enable>true</Enable>
+				<WillShowUI>OnError</WillShowUI>
+			</DynamicUpdate>
+			<ImageInstall>
+				<OSImage>
+					<WillShowUI>OnError</WillShowUI>
+					<InstallFrom>
+						<MetaData wcm:action="add">
+							<Key>/IMAGE/INDEX</Key>
+							<Value>1</Value>
+						</MetaData>
+					</InstallFrom>
+					<InstallTo>
+						<DiskID>0</DiskID>
+						<PartitionID>4</PartitionID>
+					</InstallTo>
+				</OSImage>
+			</ImageInstall>
+			<UserData>
+				<AcceptEula>true</AcceptEula>
+				<ProductKey>
+					<Key></Key>
+				</ProductKey>
+			</UserData>
+		</component>
+	</settings>
+</unattend>
